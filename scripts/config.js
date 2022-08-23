@@ -1,5 +1,9 @@
 import logger from './logger.js';
+import fs from 'fs';
+import moment from 'moment';
+
 export let logLevel = 3; // Default to INFO
+export let logStream;
 
 const config = {
     setLevel: (level) => {
@@ -34,6 +38,16 @@ const config = {
                 logger.warn("Error applying enhancements to object: " + err);
             }
         }
+    },
+    logPath: (path) => {
+      if (typeof path !== 'string' || path === '') {
+        logger.warn("No path provided or path is undefined. Log stream was not set.");
+      }
+      if (!fs.existsSync(path)) {
+        fs.mkdirSync(path);
+        logger.info("Provided path was not a directory; created log directory: " + path);
+      }
+      logStream = fs.createWriteStream(path + 'log-' + moment().format('YYYY-MM-DD_HH:mm:ss') + '.log', {flags: 'a'});
     }
 }
 
