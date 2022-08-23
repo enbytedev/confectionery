@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "Creating logs so good, they're comparable to candy!",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "node index.js"
   },
@@ -25,5 +26,7 @@
   },
   "homepage": "https://github.com/enbytedev/confectionery#readme",
   "dependencies": {
+    "colors": "^1.4.0",
+    "moment": "^2.29.4"
   }
 }
