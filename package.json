@@ -1,0 +1,29 @@
+{
+  "name": "confectionery",
+  "version": "0.0.0",
+  "description": "Creating logs so good, they're comparable to candy!",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enbytedev/confectionery.git"
+  },
+  "keywords": [
+    "logger",
+    "logging",
+    "JavaScript",
+    "error",
+    "debug",
+    "utility"
+  ],
+  "author": "enbytedev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/enbytedev/confectionery/issues"
+  },
+  "homepage": "https://github.com/enbytedev/confectionery#readme",
+  "dependencies": {
+  }
+}
