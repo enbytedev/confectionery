@@ -13,3 +13,9 @@
     </a>
   <hr>
 </p>
+
+```
+npm i confectionery
+```
+
+<a href="https://github.com/enbytedev/confectionery/tree/main/docs"><h3 align="center">Documentation</h3></a>
