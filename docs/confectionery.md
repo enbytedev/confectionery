@@ -45,3 +45,8 @@ console.debug("This is output as DEBUG");
 ### Log Files
 confectionary allows you to save logs to files. By default, this is disabled. To enable it, provide a directory to save logfiles in.
 For example, `confectionary.config.logPath('logs/');`
+
+### Console Formats
+Since confectionery 0.1.1, developers may now provide a preferred format to use when logging in the console.
+For example, `confectionary.config.setConsoleFormat('classic');`
+These are displayed in scripts/templates.js
