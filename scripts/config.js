@@ -1,7 +1,7 @@
 import logger from './logger.js';
 import fs from 'fs';
 import moment from 'moment';
-import { misc } from 'sugarcube';
+import sugarcube from 'sugarcube';
 import { classic, short, symbols } from './templates.js';
 
 export let logLevel = 3; // Default to INFO
@@ -50,7 +50,7 @@ const config = {
         fs.mkdirSync(path);
         logger.info("Provided path was not a directory; created log directory: " + path);
       }
-      logStream = fs.createWriteStream(path + 'log_' + moment().format(`YYYY-MM-DD_${misc.randomNumber(4)}`) + '.log', {flags: 'a'});
+      logStream = fs.createWriteStream(path + 'log_' + moment().format(`YYYY-MM-DD_${sugarcube.randomNumber(4)}`) + '.log', {flags: 'a'});
       logStream.write(`--- [ ${moment().format('YYYY-MM-DD HH:mm:ss')} ] ---\n`);
     },
     setConsoleFormat: (format) => {

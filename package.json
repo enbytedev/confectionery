@@ -1,6 +1,6 @@
 {
   "name": "confectionery",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Creating logs so good, they're comparable to candy!",
   "main": "index.js",
   "type": "module",
