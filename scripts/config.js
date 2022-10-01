@@ -1,11 +1,9 @@
 import logger from './logger.js';
 import fs from 'fs';
-import moment from 'moment';
-import sugarcube from 'sugarcube';
 import { classic, short, symbols } from './templates.js';
+import logToFile from './logToFile.js';
 
 export let logLevel = 3; // Default to INFO
-export let logStream;
 export let consoleFormat = classic; // Default to classic
 
 const config = {
@@ -50,8 +48,7 @@ const config = {
         fs.mkdirSync(path);
         logger.info("Provided path was not a directory; created log directory: " + path);
       }
-      logStream = fs.createWriteStream(path + 'log_' + moment().format(`YYYY-MM-DD_${sugarcube.randomNumber(4)}`) + '.log', {flags: 'a'});
-      logStream.write(`--- [ ${moment().format('YYYY-MM-DD HH:mm:ss')} ] ---\n`);
+      logToFile.openStream(path);
     },
     setConsoleFormat: (format) => {
       switch (format.toUpperCase()) {
