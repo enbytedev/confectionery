@@ -6,10 +6,10 @@ export const classic = {
 }
 
 export const short = {
-    debug: "`D `.white.bold+`${context}`.gray.bold+`${line}\n`.gray",
-    info: "`I `.cyan.bold+`${context}`.gray.bold+`${line}\n`.gray",
-    warn: "`W `.yellow.bold+`${context}`.gray.bold+`${line}\n`.gray",
-    error: "`E `.red.bold+`${context}`.gray.bold+`${line}\n`.gray"
+    debug: "`DEBUG: `.white.bold+`${context}`.gray.bold+`${line}\n`.gray",
+    info: "`INFO:  `.cyan.bold+`${context}`.gray.bold+`${line}\n`.gray",
+    warn: "`WARN:  `.yellow.bold+`${context}`.gray.bold+`${line}\n`.gray",
+    error: "`ERROR: `.red.bold+`${context}`.gray.bold+`${line}\n`.gray"
 }
 
 export const symbols = {
