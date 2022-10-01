@@ -15,7 +15,7 @@ const logToFile = {
         }
     },
     openStream: (path) => {
-        logStream = fs.createWriteStream(path + 'log_' + moment().format(`YYYY-MM-DD`) + '.log', {flags: 'a'});
+        logStream = fs.createWriteStream(path + 'log_' + moment().format(`YYYY-MM-DD`) + '.log', { flags: 'a' });
         logStream.write(`--- [ New Session Started : ${moment().format('YYYY-MM-DD HH:mm:ss')} ] ---\n`);
     }
 }
