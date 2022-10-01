@@ -51,13 +51,21 @@ const config = {
       logToFile.openStream(path);
     },
     setConsoleFormat: (format) => {
-      switch (format.toUpperCase()) {
-        case 'CLASSIC': consoleFormat = classic; break;
-        case 'SHORT': consoleFormat = short; break;
-        case 'SYMBOLS': consoleFormat = symbols; break;
-        default: logger.warn("Invalid console format: " + format + ". Valid formats are CLASSIC, SHORT, SYMBOLS. Console logging format unchanged."); break;
-      }
+      if (typeof format == 'object') {
+        if(format?.debug && format?.info && format?.warn && format?.error) {
+          consoleFormat = format;
+        } else {
+          logger.warn("Invalid console format object provided. Format unchanged.");
+        }
+      } else {
+        switch (format.toUpperCase()) {
+          case 'CLASSIC': consoleFormat = classic; break;
+          case 'SHORT': consoleFormat = short; break;
+          case 'SYMBOLS': consoleFormat = symbols; break;
+          default: logger.warn("Invalid console format: " + format + ". Valid formats are CLASSIC, SHORT, SYMBOLS. Console logging format unchanged."); break;
+        }
     }
+  }
 }
 
 export default config
