@@ -24,8 +24,12 @@ const log = {
 }
 
 function processConsoleLog(message, context, format) {
-    if (context !== undefined) { message = context + ': ' + message; }
-    process.stdout.write(eval(format));
+    let messageLines = message.match(/[^\r\n]+/g);
+    if (context !== undefined) { context = context.toUpperCase() + ' > '; } else { context = ''; }
+
+    messageLines.forEach((line) => {
+        process.stdout.write(eval(format));
+    });
 }
 
 export default log
