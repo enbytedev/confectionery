@@ -7,6 +7,11 @@ export let logLevel = 3; // Default to INFO
 export let consoleFormat = classic; // Default to classic
 
 const config = {
+  /**
+   * Set the log level to output to the console. Logs warning if the level is not valid.
+   * @param {0 | 1 | 2 | 3 | 4 | "SILENT" | "ERROR" | "WARN" | "INFO" | "DEBUG"} level 
+   * @returns {void}
+   */
   setLevel: (level) => {
     if (typeof level === 'number') {
       if (level > 4 || level < 0) {
@@ -25,6 +30,11 @@ const config = {
       }
     }
   },
+  /**
+   * Set the format of the console output. Logs warning if the object is undefined.
+   * @param {*} obj
+   * @returns {void}
+   */
   useObject: (obj) => {
     if (obj === undefined) {
       logger.warn("No object provided or object is undefined. Enhancements were not applied.");
@@ -40,6 +50,11 @@ const config = {
       }
     }
   },
+  /**
+   * Set the path for logfiles.
+   * @param {string} path path of logfile folder 
+   * @returns {void}
+   */
   logPath: (path) => {
     if (typeof path !== 'string' || path === '') {
       logger.warn("No path provided or path is undefined. Log stream was not set.");
@@ -50,6 +65,11 @@ const config = {
     }
     logToFile.openStream(path);
   },
+  /**
+   * Set the format of the console output. Logs warning if the format is not valid.
+   * @param {object | "CLASSIC" | "SHORT" | "SYMBOLS"} format 
+   * @returns {void}
+   */
   setConsoleFormat: (format) => {
     if (typeof format == 'object') {
       if (format?.debug && format?.info && format?.warn && format?.error) {

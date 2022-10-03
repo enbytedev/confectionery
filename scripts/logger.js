@@ -4,6 +4,11 @@ import colors from 'colors';
 import { logLevel, consoleFormat } from './config.js';
 import logToFile from './logToFile.js';
 
+/**
+ * Log a message to the console.
+ * @param {string} message
+ * @param {string} [context]
+ */
 const log = {
     debug: (message, context) => {
         if (logLevel >= 4) { processConsoleLog(message, context, consoleFormat.debug); };
@@ -23,6 +28,12 @@ const log = {
     }
 }
 
+/**
+ * Process the console log to stdout.
+ * @param {string} message 
+ * @param {string | undefined} context 
+ * @param {object} format 
+ */
 function processConsoleLog(message, context, format) {
     let messageLines = message.match(/[^\r\n]+/g);
     if (context !== undefined) { context = context.toUpperCase() + ' > '; } else { context = ''; }
