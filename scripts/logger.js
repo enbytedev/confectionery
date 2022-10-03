@@ -1,5 +1,5 @@
 import moment from 'moment';
-import colors from 'colors';
+import colors from '@colors/colors';
 
 import { logLevel, consoleFormat } from './config.js';
 import logToFile from './logToFile.js';
