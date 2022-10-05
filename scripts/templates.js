@@ -1,20 +1,20 @@
 export const classic = {
-    debug: "`[${moment().format('HH:mm:ss:ms')}]`.gray+` DEBUG > `.white.bold+`${context}`.gray.bold+`${line}\n`.gray",
-    info: "`[${moment().format('HH:mm:ss:ms')}]`.gray+` INFO  > `.cyan.bold+`${context}`.gray.bold+`${line}\n`.gray",
-    warn: "`[${moment().format('HH:mm:ss:ms')}]`.gray+` WARN  > `.yellow.bold+`${context}`.gray.bold+`${line}\n`.gray",
-    error: "`[${moment().format('HH:mm:ss:ms')}]`.gray+` ERROR > `.red.bold+`${context}`.gray.bold+`${line}\n`.gray"
+    debug: "`{dim [${moment().format('HH:mm:ss:ms')}]} {bold {white DEBUG}}: {gray ${context}}${line}\n`",
+    info: "`{dim [${moment().format('HH:mm:ss:ms')}]} {bold {cyan INFO}}:  {gray ${context}}${line}\n`",
+    warn: "`{dim [${moment().format('HH:mm:ss:ms')}]} {bold {yellow WARN}}:  {gray ${context}}${line}\n`",
+    error: "`{dim [${moment().format('HH:mm:ss:ms')}]} {bold {red ERROR}}: {gray ${context}}${line}\n`"
 }
 
 export const short = {
-    debug: "`DEBUG: `.white.bold+`${context}`.gray.bold+`${line}\n`.gray",
-    info: "`INFO:  `.cyan.bold+`${context}`.gray.bold+`${line}\n`.gray",
-    warn: "`WARN:  `.yellow.bold+`${context}`.gray.bold+`${line}\n`.gray",
-    error: "`ERROR: `.red.bold+`${context}`.gray.bold+`${line}\n`.gray"
+    debug: "`{bold {white DEBUG}}: {gray ${context}}${line}\n`",
+    info: "`{bold {cyan INFO}}:  {gray ${context}}${line}\n`",
+    warn: "`{bold {yellow WARN}}:  {gray ${context}}${line}\n`",
+    error: "`{bold {red ERROR}}: {gray ${context}}${line}\n`"
 }
 
 export const symbols = {
-    debug: "`? `.white.bold+`${context}`.gray.bold+`${line}\n`.gray",
-    info: "`i `.cyan.bold+`${context}`.gray.bold+`${line}\n`.gray",
-    warn: "`! `.yellow.bold+`${context}`.gray.bold+`${line}\n`.gray",
-    error: "`x `.red.bold+`${context}`.gray.bold+`${line}\n`.gray"
+    debug: "`{bold {white ?}} {gray ${context}}${line}\n`",
+    info: "`{bold {cyan i}} {gray ${context}}${line}\n`",
+    warn: "`{bold {yellow !}} {gray ${context}}${line}\n`",
+    error: "`{bold {red x}} {gray ${context}}${line}\n`"
 }

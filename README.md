@@ -75,10 +75,10 @@ Each message line is printed in `${line}` and context in `${context}`.
 Moment can be used to format a timestamp. For example,
 ```js
 const customClassic = {
-    debug: "`[${moment().format('HH:mm:ss:ms')}]`.gray+` CUSTOM DEBUG > `.white.bold+`${context}`.gray.bold+`${line}\n`.gray",
-    info: "`[${moment().format('HH:mm:ss:ms')}]`.gray+` CUSTOM INFO  > `.cyan.bold+`${context}`.gray.bold+`${line}\n`.gray",
-    warn: "`[${moment().format('HH:mm:ss:ms')}]`.gray+` CUSTOM WARN  > `.yellow.bold+`${context}`.gray.bold+`${line}\n`.gray",
-    error: "`[${moment().format('HH:mm:ss:ms')}]`.gray+` CUSTOM ERROR > `.red.bold+`${context}`.gray.bold+`${line}\n`.gray"
+    debug: "`{dim [${moment().format('HH:mm:ss:ms')}]} {bold {white DEBUG}}: {gray ${context}}${line}\n`",
+    info: "`{dim [${moment().format('HH:mm:ss:ms')}]} {bold {cyan INFO}}:  {gray ${context}}${line}\n`",
+    warn: "`{dim [${moment().format('HH:mm:ss:ms')}]} {bold {yellow WARN}}:  {gray ${context}}${line}\n`",
+    error: "`{dim [${moment().format('HH:mm:ss:ms')}]} {bold {red ERROR}}: {gray ${context}}${line}\n`"
 }
 confectionary.config.setConsoleFormat(customClassic);
 ```
