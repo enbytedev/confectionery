@@ -1,4 +1,4 @@
-import confectionery from '../index.js';
+import confectionery from '../src/index.js';
 import jest from 'jest-mock';
 
 let errorMessage = "";
