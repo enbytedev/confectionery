@@ -26,6 +26,7 @@ const streamHandler = {
      * Open a write stream to a log file.
      * @param {string} path Path for the log file folder.
      * @param {string} loggerName The name of the logger instance.
+     * @returns {object} The log stream.
      */
     openStream: (path, loggerName) => {
         if (!fs.existsSync(path)) {

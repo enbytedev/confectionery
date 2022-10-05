@@ -5,6 +5,7 @@ const regex = new RegExp(/^[A-Za-z0-9_.]+$/);
 /**
  * Set the log level to output to the console. Logs warning if the level is not valid.
  * @param {0 | 1 | 2 | 3 | 4 | "SILENT" | "ERROR" | "WARN" | "INFO" | "DEBUG"} level
+ * @param {string} type The item being set.
  * @returns {void}
  */
 export function processLevel(level, type) {

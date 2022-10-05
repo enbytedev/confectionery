@@ -6,6 +6,11 @@ import { classic } from './stdout/templates.js';
 const logLevelDefault = 3; // Default to INFO
 const consoleFormatDefault = classic; // Default to classic
 
+/**
+ * @typedef {0 | 1 | 2 | 3 | 4 | "SILENT" | "ERROR" | "WARN" | "INFO" | "DEBUG"} LogLevel
+ * @typedef {object | "CLASSIC" | "SHORT" | "SYMBOLS"} LogFormat
+ */
+
 export default class Logger {
     constructor(name) {
         this.logLevelConsole = logLevelDefault;
@@ -39,6 +44,11 @@ export default class Logger {
         if (this.logLevelFile >= 1) { streamHandler.write(this.logStream, 'ERROR', message); }
     }
 
+    /**
+     * Set the log level for both the console and log file.
+     * @param {LogLevel} cons The log level for the console.
+     * @param {LogLevel} file The log level for the log file.
+     */
     setLevel(cons, file) {
         if (cons == null || file == null) {
             console.warn("Please provide both a console and file log level. Log level unchanged.");
@@ -48,10 +58,18 @@ export default class Logger {
         }
     }
 
+    /**
+     * Set the path to the log folder.
+     * @param {string} filePath 
+     */
     setLogPath(filePath) {
         this.logStream = streamHandler.openStream(filePath, this.name);
     }
 
+    /**
+     * Set the format to use in the console.
+     * @param {LogFormat} format 
+     */
     setFormat(format) {
         this.consoleFormat = processFormat(format);
     }
