@@ -7,10 +7,10 @@ const regex = new RegExp(/^[A-Za-z0-9_.]+$/);
  * @param {0 | 1 | 2 | 3 | 4 | "SILENT" | "ERROR" | "WARN" | "INFO" | "DEBUG"} level
  * @returns {void}
  */
-export function processLevel(level) {
+export function processLevel(level, type) {
     if (typeof level === 'number') {
         if (level > 4 || level < 0) {
-            console.warn("Invalid console log level: " + level + ". Valid levels are 0-4. Log level is 3, the default.");
+            console.warn("Invalid console log level: " + level + ". Valid levels are 0-4. Log level for " + type + " is 3, the default.");
             return 3;
         } else {
             return level;
@@ -22,7 +22,7 @@ export function processLevel(level) {
             case 'WARN': return 2
             case 'INFO': return 3
             case 'DEBUG': return 4
-            default: console.warn("Invalid console log level: " + level + ". Valid levels are SILENT, ERROR, WARN, INFO, DEBUG. Log level is 3, the default."); return 3;
+            default: console.warn("Invalid " + type + " log level: " + level + ". Valid levels are SILENT, ERROR, WARN, INFO, DEBUG. Log level is 3, the default."); return 3;
         }
     }
 }

@@ -43,8 +43,8 @@ export default class Logger {
         if (cons == null || file == null) {
             console.warn("Please provide both a console and file log level. Log level unchanged.");
         } else {
-        this.logLevelConsole = processLevel(cons);
-        this.logLevelFile = processLevel(file);
+        this.logLevelConsole = processLevel(cons, "Console");
+        this.logLevelFile = processLevel(file, "Log File");
         }
     }
 
