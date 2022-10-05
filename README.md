@@ -19,7 +19,7 @@ npm i confectionery
 ```
 
 ### Logger
-For example, `const logger = confectionary.createLogger("Logger");` allows the following:
+For example, `const logger = confectionery.createLogger("Logger");` allows the following:
 ```js
 logger.log("This is output as INFO");
 logger.info("This is output as INFO", "Optional Context");
@@ -27,7 +27,7 @@ logger.warn("This is output as WARN");
 logger.error("This is output as ERROR", "Optional Context");
 logger.debug("This is output as DEBUG");
 ```
-You can also assign it to the existing console object: `console = confectionary.createLogger("Replacement_Console");`
+You can also assign it to the existing console object: `console = confectionery.createLogger("Replacement_Console");`
 
 **You can have multiple logger instances at a time.**
 
@@ -51,7 +51,7 @@ The following are provided log levels:
 
 ----
 ### Log Files
-confectionary allows you to save logs to files. By default, this is disabled. To enable it, provide a directory to save logfiles in.
+confectionery allows you to save logs to files. By default, this is disabled. To enable it, provide a directory to save logfiles in.
 For example, `logger.setLogPath('./logs/');`
 
 ----

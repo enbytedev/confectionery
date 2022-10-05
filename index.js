@@ -2,8 +2,8 @@ import logger from './scripts/logger.js';
 import { validateCreateLoggerOptions } from './scripts/processing.js';
 
 /**
- * Confectionary
- * @module confectionary
+ * Confectionery
+ * @module confectionery
  */
 const confectionery = {
     createLogger: (name) => {
