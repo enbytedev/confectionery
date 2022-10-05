@@ -19,24 +19,26 @@ npm i confectionery
 ```
 
 ### Logger
-For example, `const console = confectionary.createLogger("Console");` allows the following:
+For example, `const logger = confectionary.createLogger("Logger");` allows the following:
 ```js
-console.log("This is output as INFO");
-console.info("This is output as INFO", "Optional Context");
-console.warn("This is output as WARN");
-console.error("This is output as ERROR", "Optional Context");
-console.debug("This is output as DEBUG");
+logger.log("This is output as INFO");
+logger.info("This is output as INFO", "Optional Context");
+logger.warn("This is output as WARN");
+logger.error("This is output as ERROR", "Optional Context");
+logger.debug("This is output as DEBUG");
 ```
+You can also assign it to the existing console object: `console = confectionary.createLogger("Replacement_Console");`
+
 **You can have multiple logger instances at a time.**
 
 ----
 ### Log Levels
-A log level allows you to specify what gets printed to the console.
+A log level allows you to specify what gets printed to the console and logfiles.
 
-Example of setting a log level,
-`logger.setLevel("debug");`
-or
-`logger.setLevel(4);`
+In the below example, the console is set to debug and the logfile is set to error.
+`logger.setLevel("debug", "error");`
+In the below example, the both the console and the logfile are set to info.
+`logger.setLevel(3, 3);`
 
 The following are provided log levels:
 |Level|#|Default|
@@ -55,10 +57,10 @@ For example, `logger.setLogPath('./logs/');`
 ----
 ### Console Formats
 Developers may provide a preferred format to use when logging in the console.
-For example, `logger.setConsoleFormat('classic');`.
+For example, `logger.setFormat('classic');`.
 Default templates (classic, short, symbols) can be found in `scripts/stdout/templates.js`
 
-Custom formats are also supported. Simply use `logger.setConsoleFormat();` with an object. 
+Custom formats are also supported. Simply use `logger.setFormat();` with an object. 
 This object must contain functions that return debug, info, warn, and error. 
 Each message line is printed in `${line}` and context in `${context}`. 
 Moment can be used to format a timestamp. For example,
@@ -69,6 +71,6 @@ const customClassic = {
     warn: function handle(moment, context, line) { return `{dim [${moment().format('HH:mm:ss:ms')}]} {bold {yellow WARN}}:  {gray ${context}}${line}\n`},
     error: function handle(moment, context, line) { return `{dim [${moment().format('HH:mm:ss:ms')}]} {bold {red ERROR}}: {gray ${context}}${line}\n`}
 }
-logger.setConsoleFormat(customClassic);
+logger.setFormat(customClassic);
 ```
 Note: confectionery does NOT automatically add line breaks. Please use `\n` when designing formats.

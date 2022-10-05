@@ -3,13 +3,14 @@ import { processConsoleLog } from './stdout/processing.js';
 import { processLevel, processFormat } from './processing.js';
 import { classic } from './stdout/templates.js';
 
-const logLevel = 3; // Default to INFO
-const consoleFormat = classic; // Default to classic
+const logLevelDefault = 3; // Default to INFO
+const consoleFormatDefault = classic; // Default to classic
 
 export default class Logger {
     constructor(name) {
-        this.logLevel = logLevel;
-        this.consoleFormat = consoleFormat;
+        this.logLevelConsole = logLevelDefault;
+        this.logLevelFile = logLevelDefault;
+        this.consoleFormat = consoleFormatDefault;
         this.logStream;
         this.name = name;
     }
@@ -19,34 +20,39 @@ export default class Logger {
     }
 
     debug(message, context) {
-        if (this.logLevel >= 4) { processConsoleLog(message, context, this.consoleFormat.debug); };
-        streamHandler.write(this.logStream, 'DEBUG', message);
+        if (this.logLevelConsole >= 4) { processConsoleLog(message, context, this.consoleFormat.debug); };
+        if (this.logLevelFile >= 4) { streamHandler.write(this.logStream, 'DEBUG', message); }
     }
 
     info(message, context) {
-        if (this.logLevel >= 3) { processConsoleLog(message, context, this.consoleFormat.info); };
-        streamHandler.write(this.logStream, 'INFO', message);
+        if (this.logLevelConsole >= 3) { processConsoleLog(message, context, this.consoleFormat.info); };
+        if (this.logLevelFile >= 3) { streamHandler.write(this.logStream, 'INFO', message); }
     }
 
     warn(message, context) {
-        if (this.logLevel >= 2) { processConsoleLog(message, context, this.consoleFormat.warn); }
-        streamHandler.write(this.logStream, 'WARN', message);
+        if (this.logLevelConsole >= 2) { processConsoleLog(message, context, this.consoleFormat.warn); }
+        if (this.logLevelFile >= 2) { streamHandler.write(this.logStream, 'WARN', message); }
     }
 
     error(message, context) {
-        if (this.logLevel >= 1) { processConsoleLog(message, context, this.consoleFormat.error); }
-        streamHandler.write(this.logStream, 'ERROR', message);
+        if (this.logLevelConsole >= 1) { processConsoleLog(message, context, this.consoleFormat.error); }
+        if (this.logLevelFile >= 1) { streamHandler.write(this.logStream, 'ERROR', message); }
     }
 
-    setLevel(level) {
-        this.logLevel = processLevel(level);
+    setLevel(cons, file) {
+        if (cons == null || file == null) {
+            console.warn("Please provide both a console and file log level. Log level unchanged.");
+        } else {
+        this.logLevel = processLevel(cons);
+        this.logLevelFile = processLevel(file);
+        }
     }
 
     setLogPath(filePath) {
         this.logStream = streamHandler.openStream(filePath, this.name);
     }
 
-    setConsoleFormat(format) {
+    setFormat(format) {
         this.consoleFormat = processFormat(format);
     }
 };

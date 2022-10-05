@@ -8,16 +8,6 @@ const regex = new RegExp(/^[A-Za-z0-9_.]+$/);
  * @returns {void}
  */
 export function processLevel(level) {
-    // TODO: Add support for log levels in logfiles
-    return processConsoleLevel(level);
-}
-
-/**
- * Validates the log level and returns the corresponding number.
- * @param {number} level 
- * @returns {number} The new log level.
- */
-function processConsoleLevel(level) {
     if (typeof level === 'number') {
         if (level > 4 || level < 0) {
             console.warn("Invalid console log level: " + level + ". Valid levels are 0-4. Log level is 3, the default.");
