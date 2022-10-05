@@ -27,8 +27,6 @@ logger.warn("This is output as WARN");
 logger.error("This is output as ERROR", "Optional Context");
 logger.debug("This is output as DEBUG");
 ```
-You can also assign it to the existing console object: `console = confectionery.createLogger("Replacement_Console");`
-
 **You can have multiple logger instances at a time.**
 
 ----

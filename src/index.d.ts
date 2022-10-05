@@ -21,11 +21,10 @@ declare namespace confectionery {
         warn(message: string, context?: string): void;
         error(message: string, context?: string): void;
 
-        setLevel(console: LogLevel, file: LogLevel): void;
+        setLevel(console: number | string, file: number | string): void;
         setLogPath(path: string): void;
         setFormat(format: LogFormat): void;
     }
-    export type LogLevel = 0 | 1 | 2 | 3 | 4 | "SILENT" | "ERROR" | "WARN" | "INFO" | "DEBUG";
     export type LogFormat = object | "CLASSIC" | "SHORT" | "SYMBOLS";
     
 }

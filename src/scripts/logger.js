@@ -7,7 +7,6 @@ const logLevelDefault = 3; // Default to INFO
 const consoleFormatDefault = classic; // Default to classic
 
 /**
- * @typedef {0 | 1 | 2 | 3 | 4 | "SILENT" | "ERROR" | "WARN" | "INFO" | "DEBUG"} LogLevel
  * @typedef {object | "CLASSIC" | "SHORT" | "SYMBOLS"} LogFormat
  */
 
@@ -46,15 +45,15 @@ export default class Logger {
 
     /**
      * Set the log level for both the console and log file.
-     * @param {LogLevel} cons The log level for the console.
-     * @param {LogLevel} file The log level for the log file.
+     * @param {number | string} cons The log level for the console.
+     * @param {number | string} file The log level for the log file.
      */
     setLevel(cons, file) {
         if (cons == null || file == null) {
             console.warn("Please provide both a console and file log level. Log level unchanged.");
         } else {
-        this.logLevelConsole = processLevel(cons, "Console");
-        this.logLevelFile = processLevel(file, "Log File");
+            this.logLevelConsole = processLevel(cons, "Console");
+            this.logLevelFile = processLevel(file, "Log File");
         }
     }
 
