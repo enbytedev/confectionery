@@ -59,15 +59,15 @@ For example, `logger.setConsoleFormat('classic');`.
 Default templates (classic, short, symbols) can be found in `scripts/stdout/templates.js`
 
 Custom formats are also supported. Simply use `logger.setConsoleFormat();` with an object. 
-This object must contain debug, info, warn, and error. 
+This object must contain functions that return debug, info, warn, and error. 
 Each message line is printed in `${line}` and context in `${context}`. 
 Moment can be used to format a timestamp. For example,
 ```js
 const customClassic = {
-    debug: "`{dim [${moment().format('HH:mm:ss:ms')}]} {bold {white DEBUG}}: {gray ${context}}${line}\n`",
-    info: "`{dim [${moment().format('HH:mm:ss:ms')}]} {bold {cyan INFO}}:  {gray ${context}}${line}\n`",
-    warn: "`{dim [${moment().format('HH:mm:ss:ms')}]} {bold {yellow WARN}}:  {gray ${context}}${line}\n`",
-    error: "`{dim [${moment().format('HH:mm:ss:ms')}]} {bold {red ERROR}}: {gray ${context}}${line}\n`"
+    debug: function handle(moment, context, line) { return `{dim [${moment().format('HH:mm:ss:ms')}]} {bold {white DEBUG}}: {gray ${context}}${line}\n`},
+    info: function handle(moment, context, line) { return `{dim [${moment().format('HH:mm:ss:ms')}]} {bold {cyan INFO}}:  {gray ${context}}${line}\n`},
+    warn: function handle(moment, context, line) { return `{dim [${moment().format('HH:mm:ss:ms')}]} {bold {yellow WARN}}:  {gray ${context}}${line}\n`},
+    error: function handle(moment, context, line) { return `{dim [${moment().format('HH:mm:ss:ms')}]} {bold {red ERROR}}: {gray ${context}}${line}\n`}
 }
 logger.setConsoleFormat(customClassic);
 ```
