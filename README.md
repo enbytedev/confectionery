@@ -19,22 +19,26 @@ npm i confectionery
 ```
 
 ### Logger
-**The following example is the default assignment.** It is recommended that a developer uses `confectionary.config.useObject(console);`, demonstrated later.
+For example, `const logger = confectionery.createLogger("Logger");` allows the following:
 ```js
-confectionary.log.debug('This is output as DEBUG if log level is debug (4)');
-confectionary.log.info('This is output as INFO');
-confectionary.log.warn('This is output as WARN');
-confectionary.log.error('This is output as ERROR');
+logger.log("This is output as INFO");
+logger.info("This is output as INFO", "Optional Context");
+logger.warn("This is output as WARN");
+logger.error("This is output as ERROR", "Optional Context");
+logger.debug("This is output as DEBUG");
 ```
+You can also assign it to the existing console object: `console = confectionery.createLogger("Replacement_Console");`
+
+**You can have multiple logger instances at a time.**
 
 ----
 ### Log Levels
-A log level allows you to specify what gets printed to the console.
+A log level allows you to specify what gets printed to the console and logfiles.
 
-Example of setting a log level,
-`confectionary.config.setLevel("debug");`
-or
-`confectionary.config.setLevel(4);`
+In the below example, the console is set to debug and the logfile is set to error.
+`logger.setLevel("debug", "error");`
+In the below example, the both the console and the logfile are set to info.
+`logger.setLevel(3, 3);`
 
 The following are provided log levels:
 |Level|#|Default|
@@ -46,40 +50,27 @@ The following are provided log levels:
 |DEBUG|4|
 
 ----
-### Replace Objects
-confectionary also allows you to replace the default console object to provide easy implementation and maximum compatibility:
-
-For example, `confectionary.config.useObject(console);` allows the following:
-```js
-console.log("This is output as INFO");
-console.info("This is output as INFO");
-console.warn("This is output as WARN");
-console.error("This is output as ERROR");
-console.debug("This is output as DEBUG");
-```
-
-----
 ### Log Files
-confectionary allows you to save logs to files. By default, this is disabled. To enable it, provide a directory to save logfiles in.
-For example, `confectionary.config.logPath('logs/');`
+confectionery allows you to save logs to files. By default, this is disabled. To enable it, provide a directory to save logfiles in.
+For example, `logger.setLogPath('./logs/');`
 
 ----
 ### Console Formats
 Developers may provide a preferred format to use when logging in the console.
-For example, `confectionary.config.setConsoleFormat('classic');`.
-Default templates (classic, short, symbols) can be found in `scripts/templates.js`
+For example, `logger.setFormat('classic');`.
+Default templates (classic, short, symbols) can be found in `scripts/stdout/templates.js`
 
-Since version 0.2.0, custom formats are now supported. Simply use `confectionary.config.setConsoleFormat();` with an object. 
-This object must contain debug, info, warn, and error. 
+Custom formats are also supported. Simply use `logger.setFormat();` with an object. 
+This object must contain functions that return debug, info, warn, and error. 
 Each message line is printed in `${line}` and context in `${context}`. 
 Moment can be used to format a timestamp. For example,
 ```js
 const customClassic = {
-    debug: "`[${moment().format('HH:mm:ss:ms')}]`.gray+` CUSTOM DEBUG > `.white.bold+`${context}`.gray.bold+`${line}\n`.gray",
-    info: "`[${moment().format('HH:mm:ss:ms')}]`.gray+` CUSTOM INFO  > `.cyan.bold+`${context}`.gray.bold+`${line}\n`.gray",
-    warn: "`[${moment().format('HH:mm:ss:ms')}]`.gray+` CUSTOM WARN  > `.yellow.bold+`${context}`.gray.bold+`${line}\n`.gray",
-    error: "`[${moment().format('HH:mm:ss:ms')}]`.gray+` CUSTOM ERROR > `.red.bold+`${context}`.gray.bold+`${line}\n`.gray"
+    debug: function handle(moment, context, line) { return `{dim [${moment().format('HH:mm:ss:ms')}]} {bold {white DEBUG}}: {gray ${context}}${line}\n`},
+    info: function handle(moment, context, line) { return `{dim [${moment().format('HH:mm:ss:ms')}]} {bold {cyan INFO}}:  {gray ${context}}${line}\n`},
+    warn: function handle(moment, context, line) { return `{dim [${moment().format('HH:mm:ss:ms')}]} {bold {yellow WARN}}:  {gray ${context}}${line}\n`},
+    error: function handle(moment, context, line) { return `{dim [${moment().format('HH:mm:ss:ms')}]} {bold {red ERROR}}: {gray ${context}}${line}\n`}
 }
-confectionary.config.setConsoleFormat(customClassic);
+logger.setFormat(customClassic);
 ```
 Note: confectionery does NOT automatically add line breaks. Please use `\n` when designing formats.
