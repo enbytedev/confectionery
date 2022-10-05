@@ -1,13 +1,16 @@
 import logger from './scripts/logger.js';
-import config from './scripts/config.js';
+import { validateCreateLoggerOptions } from './scripts/processing.js';
 
 /**
  * Confectionary
  * @module confectionary
  */
 const confectionery = {
-    log: logger,
-    config: config,
+    createLogger: (name) => {
+        if (validateCreateLoggerOptions(name)) {
+            return new logger(name);
+        }
+    },
 }
 
 export default confectionery;
