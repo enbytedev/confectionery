@@ -1,5 +1,3 @@
-import moment from 'moment';
-
 export const classic = {
     debug: function handle(moment, context, line) { return `{dim [${moment().format('HH:mm:ss:ms')}]} {bold {white DEBUG}}: {gray ${context}}${line}\n`},
     info: function handle(moment, context, line) { return `{dim [${moment().format('HH:mm:ss:ms')}]} {bold {cyan INFO}}:  {gray ${context}}${line}\n`},

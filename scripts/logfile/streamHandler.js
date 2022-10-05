@@ -28,6 +28,9 @@ const streamHandler = {
      * @param {string} loggerName The name of the logger instance.
      */
     openStream: (path, loggerName) => {
+        if (!fs.existsSync(path)) {
+            fs.mkdirSync(path);
+        }
         let logStream = fs.createWriteStream(path + loggerName + "_" + moment().format(`YYYY-MM-DD`) + '.log', { flags: 'a' });
         logStream.write(`--- [ New Session Started : ${loggerName} @ ${moment().format('YYYY-MM-DD HH:mm:ss')} ] ---\n`);
         return logStream;
