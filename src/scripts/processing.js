@@ -53,16 +53,17 @@ export function processFormat(format) {
 function processConsoleFormat(format) {
     if (typeof format == 'object') {
         if (format?.debug && format?.info && format?.warn && format?.error) {
-            consoleFormat = format;
+            return format;
         } else {
-            console.warn("Invalid console format object provided. Format unchanged.");
+            console.warn("Invalid console format object provided. Console logging format has defaulted to CLASSIC.");
+            return classic;
         }
     } else {
         switch (format.toUpperCase()) {
             case 'CLASSIC': return classic;
             case 'SHORT': return short;
             case 'SYMBOLS': return symbols;
-            default: console.warn("Invalid console format: " + format + ". Valid formats are CLASSIC, SHORT, SYMBOLS. Console logging format is at CLASSIC."); return classic;
+            default: console.warn("Invalid console format: " + format + ". Valid formats are CLASSIC, SHORT, SYMBOLS. Console logging format has defaulted to CLASSIC."); return classic;
         }
     }
 }
