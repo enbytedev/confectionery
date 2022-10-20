@@ -1,7 +1,7 @@
 export default confectionery;
 declare namespace confectionery {
     function createLogger(name: string): logger;
-
+    function customPrint(format: function, ...args: any[]): void;
 
     interface logger {
         logStream: object;

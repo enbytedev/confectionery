@@ -72,3 +72,12 @@ const customClassic = {
 logger.setFormat(customClassic);
 ```
 Note: confectionery does NOT automatically add line breaks. Please use `\n` when designing formats.
+
+----
+### Custom Printing
+confectionery provides a formatter to use when there is no logger, or the message needs a special format (mainly used in other modules.)
+
+Example: 
+```js
+confectionery.customPrint((arg1, arg2, arg3) => { return `{bold {white ${arg1}}} {gray ${arg2}} ${arg3}\n`}, "ARGUMENT 1", "ARGUMENT 2", "ARGUMENT 3");
+```

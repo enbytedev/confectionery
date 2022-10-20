@@ -1,6 +1,6 @@
 {
   "name": "confectionery",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Creating easy, practical logging with instant implementation. This is the icing to your metaphorical cake!",
   "main": "src/index.js",
   "type": "module",
