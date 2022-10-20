@@ -19,7 +19,7 @@ const confectionery = {
     },
     /**
      * Prints without a logger instance. This is intended for other packages or for use before a logger instance is created.
-     * @param {function} format The format to use for the message.
+     * @param {Function} format The format to use for the message.
      * @param  {...any} args Arguments to pass to the format function.
      * @returns 
      */
