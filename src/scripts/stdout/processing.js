@@ -8,6 +8,8 @@ import {template} from 'chalk-template';
  * @param {object} format 
  */
 export function processConsoleLog(message, context, format) {
+    if (typeof message !== 'string') { return; }
+
     let messageLines = message.match(/[^\r\n]+/g);
     if (typeof context === 'string' && context != '') { context = context.toUpperCase() + ' > '; } else { context = ''; }
 

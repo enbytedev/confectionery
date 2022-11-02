@@ -1,3 +1,4 @@
+import {classic, short, symbols} from '../src/scripts/stdout/templates.js';
 import confectionery from '../src/index.js';
 import jest from 'jest-mock';
 
@@ -11,6 +12,14 @@ beforeAll(() => {
 });
 
 describe('Format Logger to Templates', () => {
+    test('Template From Object', () => {
+        logger.setFormat(classic);
+        expect(logger["consoleFormat"]["info"].toString()).toBe("function handle(moment, context, line) { return `{dim [${moment().format('HH:mm:ss:ms')}]} {bold {cyan INFO}}:  {gray ${context}}${line}\\n`}");
+        logger.setFormat(short);
+        expect(logger["consoleFormat"]["info"].toString()).toBe("function handle(moment, context, line) { return `{bold {cyan INFO}}:  {gray ${context}}${line}\\n`}");
+        logger.setFormat(symbols);
+        expect(logger["consoleFormat"]["info"].toString()).toBe("function handle(moment, context, line) { return `{bold {cyan i}} {gray ${context}}${line}\\n`}");
+    });
     test('Symbols Template', () => {
         logger.setFormat("SYMBOLS");
         expect(logger["consoleFormat"]["error"].toString()).toBe("function handle(moment, context, line) { return `{bold {red x}} {gray ${context}}${line}\\n`}");
